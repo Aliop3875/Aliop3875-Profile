@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aliop3875™ | Official</title>
+    <style>
+        /* --- قسم التنسيق (CSS) --- */
+        body {
+            margin: 0;
+            background-color: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            font-family: 'Segoe UI', Roboto, sans-serif;
+            overflow-x: hidden;
+        }
+
+        .main-container {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .glow-circle {
+            width: 220px;
+            height: 220px;
+            background: radial-gradient(circle, #00ffff 0%, #00e5e5 100%);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #ffffff; /* لون أبيض مريح */
+            font-size: 1.9rem;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            box-shadow: 0 0 25px rgba(0, 255, 255, 0.7), 0 0 50px rgba(0, 255, 255, 0.4);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 10;
+            user-select: none;
+            padding: 10px;
+        }
+
+        .glow-circle:active {
+            transform: scale(0.94);
+        }
+
+        .content-wrapper {
+            opacity: 0;
+            transform: translateY(-20px) scale(0.96);
+            pointer-events: none;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            margin-top: 35px;
+        }
+
+        .content-wrapper.show {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            pointer-events: all;
+        }
+
+        .cards-container {
+            display: flex;
+            gap: 30px;
+        }
+
+        .card-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .box {
+            width: 180px;
+            padding: 16px;
+            border-radius: 12px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            color: white;
+            transition: 0.3s ease;
+        }
+
+        .box:hover {
+            transform: translateY(-5px);
+            filter: brightness(1.15);
+        }
+
+        .purple-box { background-color: #5865f2; }
+        .cyan-box { background-color: #24a1de; }
+
+        .label {
+            margin-top: 10px;
+            font-size: 0.9rem;
+            color: #888;
+        }
+
+        .copy-status {
+            position: absolute;
+            top: -25px;
+            font-size: 0.8rem;
+            color: #00ffff;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .show-status { opacity: 1; }
+
+        @keyframes popup {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.08); }
+            100% { transform: scale(1); }
+        }
+        .popup-anim {
+            animation: popup 0.4s ease;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="main-container">
+        <div class="glow-circle" id="circleTrigger">Aliop3875™</div>
+
+        <div class="content-wrapper" id="contentWrapper">
+            <div class="cards-container">
+                <div class="card-item" onclick="copyToClipboard('@aliop3875', this)">
+                    <div class="box purple-box">@aliop_3875</div>
+                    <p class="label">Discord</p>
+                    <span class="copy-status">تم النسخ!</span>
+                </div>
+
+                <div class="card-item" onclick="copyToClipboard('@aliop3875', this)">
+                    <div class="box cyan-box">@aliop3875</div>
+                    <p class="label">Telegram</p>
+                    <span class="copy-status">تم النسخ!</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        /* --- قسم التفاعل (JS) --- */
+        const circle = document.getElementById('circleTrigger');
+        const content = document.getElementById('contentWrapper');
+
+        circle.onclick = function() {
+            circle.classList.remove('popup-anim');
+            void circle.offsetWidth; 
+            circle.classList.add('popup-anim');
+            content.classList.toggle('show');
+        };
+
+        function copyToClipboard(text, element) {
+            navigator.clipboard.writeText(text).then(() => {
+                const status = element.querySelector('.copy-status');
+                status.classList.add('show-status');
+                setTimeout(() => {
+                    status.classList.remove('show-status');
+                }, 1500);
+            });
+        }
+    </script>
+</body>
+</html>
